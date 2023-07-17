@@ -1,0 +1,108 @@
+mysql> select * from student;
++-----------+---------+------------+------+------+--------+
+| regNo     | name    | phone      | age  | dept | gender |
++-----------+---------+------------+------+------+--------+
+| 192011002 | sahoo   | 7984510623 |   21 | CSE  | M      |
+| 192011003 | ajai    | 9999877877 |   19 | CSE  | M      |
+| 192011008 | subiya  | 9693111281 |   21 | CSE  | F      |
+| 192011013 | aniruth | 9999888877 |   20 | CSE  | M      |
+| 192011054 | gareeb  | 9955877877 |   21 | IT   | F      |
++-----------+---------+------------+------+------+--------+
+5 rows in set (0.01 sec)
+
+mysql> select * from dept;
++--------+----------+--------+
+| deptId | deptName | HOD    |
++--------+----------+--------+
+| 2001   | CSE      | XYZABC |
+| 2002   | IT       | ABCXYZ |
+| 2003   | ECE      | CDEWXY |
+| 2004   | EEE      | XYZLMN |
++--------+----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> # 1. INNER JOIN / DEFAULT JOIN
+mysql> SELECT student.regNo, student.name,dept.deptId,dept.deptName
+    -> FROM student INNER JOIN dept
+    -> ON student.dept = dept.deptName ;
++-----------+---------+--------+----------+
+| regNo     | name    | deptId | deptName |
++-----------+---------+--------+----------+
+| 192011002 | sahoo   | 2001   | CSE      |
+| 192011003 | ajai    | 2001   | CSE      |
+| 192011008 | subiya  | 2001   | CSE      |
+| 192011013 | aniruth | 2001   | CSE      |
+| 192011054 | gareeb  | 2002   | IT       |
++-----------+---------+--------+----------+
+5 rows in set (0.00 sec)
+
+mysql> # 2. LEFT OUTER JOIN
+mysql> SELECT student.regNo,dept.deptId
+    -> FROM student LEFT JOIN dept
+    -> ON student.dept = dept.deptName ;
++-----------+--------+
+| regNo     | deptId |
++-----------+--------+
+| 192011002 | 2001   |
+| 192011003 | 2001   |
+| 192011008 | 2001   |
+| 192011013 | 2001   |
+| 192011054 | 2002   |
++-----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> # 3. RIGHT OUTER JOIN
+mysql> SELECT student.regNo,dept.deptId
+    -> FROM student RIGHT JOIN dept
+    -> ON student.dept = dept.deptName ;
++-----------+--------+
+| regNo     | deptId |
++-----------+--------+
+| 192011013 | 2001   |
+| 192011008 | 2001   |
+| 192011003 | 2001   |
+| 192011002 | 2001   |
+| 192011054 | 2002   |
+|      NULL | 2003   |
+|      NULL | 2004   |
++-----------+--------+
+7 rows in set (0.00 sec)
+
+mysql> # 4. FULL JOIN (LEFT OUTER JOIN UNION RIGHT OUTER JOIN)
+
+mysql> SELECT * FROM student LEFT JOIN dept ON student.dept = dept.deptName
+    -> UNION ALL
+    -> SELECT * FROM student RIGHT JOIN dept ON student.dept = dept.deptName;
++-----------+---------+------------+------+------+--------+--------+----------+--------+
+| regNo     | name    | phone      | age  | dept | gender | deptId | deptName | HOD    |
++-----------+---------+------------+------+------+--------+--------+----------+--------+
+| 192011002 | sahoo   | 7984510623 |   21 | CSE  | M      | 2001   | CSE      | XYZABC |
+| 192011003 | ajai    | 9999877877 |   19 | CSE  | M      | 2001   | CSE      | XYZABC |
+| 192011008 | subiya  | 9693111281 |   21 | CSE  | F      | 2001   | CSE      | XYZABC |
+| 192011013 | aniruth | 9999888877 |   20 | CSE  | M      | 2001   | CSE      | XYZABC |
+| 192011054 | gareeb  | 9955877877 |   21 | IT   | F      | 2002   | IT       | ABCXYZ |
+| 192011013 | aniruth | 9999888877 |   20 | CSE  | M      | 2001   | CSE      | XYZABC |
+| 192011008 | subiya  | 9693111281 |   21 | CSE  | F      | 2001   | CSE      | XYZABC |
+| 192011003 | ajai    | 9999877877 |   19 | CSE  | M      | 2001   | CSE      | XYZABC |
+| 192011002 | sahoo   | 7984510623 |   21 | CSE  | M      | 2001   | CSE      | XYZABC |
+| 192011054 | gareeb  | 9955877877 |   21 | IT   | F      | 2002   | IT       | ABCXYZ |
+|      NULL | NULL    | NULL       | NULL | NULL | NULL   | 2003   | ECE      | CDEWXY |
+|      NULL | NULL    | NULL       | NULL | NULL | NULL   | 2004   | EEE      | XYZLMN |
++-----------+---------+------------+------+------+--------+--------+----------+--------+
+12 rows in set (0.01 sec)
+
+mysql> SELECT * FROM student RIGHT JOIN dept ON student.dept = dept.deptName
+    -> UNION
+    -> SELECT * FROM student LEFT JOIN dept ON student.dept = dept.deptName;
++-----------+---------+------------+------+------+--------+--------+----------+--------+
+| regNo     | name    | phone      | age  | dept | gender | deptId | deptName | HOD    |
++-----------+---------+------------+------+------+--------+--------+----------+--------+
+| 192011013 | aniruth | 9999888877 |   20 | CSE  | M      | 2001   | CSE      | XYZABC |
+| 192011008 | subiya  | 9693111281 |   21 | CSE  | F      | 2001   | CSE      | XYZABC |
+| 192011003 | ajai    | 9999877877 |   19 | CSE  | M      | 2001   | CSE      | XYZABC |
+| 192011002 | sahoo   | 7984510623 |   21 | CSE  | M      | 2001   | CSE      | XYZABC |
+| 192011054 | gareeb  | 9955877877 |   21 | IT   | F      | 2002   | IT       | ABCXYZ |
+|      NULL | NULL    | NULL       | NULL | NULL | NULL   | 2003   | ECE      | CDEWXY |
+|      NULL | NULL    | NULL       | NULL | NULL | NULL   | 2004   | EEE      | XYZLMN |
++-----------+---------+------------+------+------+--------+--------+----------+--------+
+7 rows in set (0.00 sec)

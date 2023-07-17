@@ -1,0 +1,50 @@
+mysql> use msi
+Database changed
+mysql> select * from student;
++-----------+---------+------------+------+------+--------+
+| regNo     | name    | phone      | age  | dept | gender |
++-----------+---------+------------+------+------+--------+
+| 192011002 | sahoo   | 7984510623 |   21 | CSE  | M      |
+| 192011003 | ajai    | 9999877877 |   19 | CSE  | M      |
+| 192011008 | subiya  | 9693111281 |   21 | CSE  | F      |
+| 192011013 | aniruth | 9999888877 |   20 | CSE  | M      |
+| 192011054 | gareeb  | 9955877877 |   21 | IT   | F      |
++-----------+---------+------------+------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> # 1. Creating VIEW
+mysql> CREATE VIEW student_essential AS SELECT regNo,name FROM student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT * FROM student_essential;
++-----------+---------+
+| regNo     | name    |
++-----------+---------+
+| 192011002 | sahoo   |
+| 192011003 | ajai    |
+| 192011008 | subiya  |
+| 192011013 | aniruth |
+| 192011054 | gareeb  |
++-----------+---------+
+5 rows in set (0.01 sec)
+
+mysql> CREATE VIEW cse_student AS SELECT regNo,name FROM student WHERE dept
+= 'CSE' ;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT * FROM cse_student;
++-----------+---------+
+| regNo     | name    |
++-----------+---------+
+| 192011002 | sahoo   |
+| 192011003 | ajai    |
+| 192011008 | subiya  |
+| 192011013 | aniruth |
++-----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> #2. Creating INDEX
+
+mysql> CREATE INDEX register_no ON student(regNo);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0

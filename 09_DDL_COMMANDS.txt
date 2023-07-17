@@ -1,0 +1,196 @@
+# 1. CREATING DATABASES
+
+mysql> create database msi;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use msi;
+Database changed
+mysql> create table student(
+    -> regNo int,
+    -> name varchar(255),
+    -> phone varchar(15),
+    -> age int,
+    -> dept varchar(25),
+    -> primary key(regNo)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc student;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| regNo | int          | NO   | PRI | NULL    |       |
+| name  | varchar(255) | YES  |     | NULL    |       |
+| phone | varchar(15)  | YES  |     | NULL    |       |
+| age   | int          | YES  |     | NULL    |       |
+| dept  | varchar(25)  | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table dept;
+mysql> create table dept(
+    -> deptId varchar(25),
+    -> deptName varchar(50),
+    -> HOD varchar(50) );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc dept;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| deptId   | varchar(25) | YES  |     | NULL    |       |
+| deptName | varchar(50) | YES  |     | NULL    |       |
+| HOD      | varchar(50) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table course(
+    -> courseId varchar(25),
+    -> courseName varchar(30),
+    -> courseDept varchar(30),
+    -> courseFaculty varchar(30),
+    -> courseRoom int );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc course;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| courseId      | varchar(25) | YES  |     | NULL    |       |
+| courseName    | varchar(30) | YES  |     | NULL    |       |
+| courseDept    | varchar(30) | YES  |     | NULL    |       |
+| courseFaculty | varchar(30) | YES  |     | NULL    |       |
+| courseRoom    | int         | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table faculty(
+    -> facultyId varchar(25),
+    -> facultyName varchar(50),
+    -> facultyDept varchar(30),
+    -> facultyPhone varchar(15),
+    -> facultyDOB date );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc faculty;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| facultyId    | varchar(25) | YES  |     | NULL    |       |
+| facultyName  | varchar(50) | YES  |     | NULL    |       |
+| facultyDept  | varchar(30) | YES  |     | NULL    |       |
+| facultyPhone | varchar(15) | YES  |     | NULL    |       |
+| facultyDOB   | date        | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+#2. ALTERING TABLES
+
+mysql> ALTER TABLE faculty ADD gender char(1);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc faculty
+    -> ;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| facultyId    | varchar(25) | YES  |     | NULL    |       |
+| facultyName  | varchar(50) | YES  |     | NULL    |       |
+| facultyDept  | varchar(30) | YES  |     | NULL    |       |
+| facultyPhone | varchar(15) | YES  |     | NULL    |       |
+| facultyDOB   | date        | YES  |     | NULL    |       |
+| gender       | char(1)     | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE student ADD gender char(1);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| regNo  | int          | NO   | PRI | NULL    |       |
+| name   | varchar(255) | YES  |     | NULL    |       |
+| phone  | varchar(15)  | YES  |     | NULL    |       |
+| age    | int          | YES  |     | NULL    |       |
+| dept   | varchar(25)  | YES  |     | NULL    |       |
+| gender | char(1)      | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE course ADD PRIMARY KEY(courseId);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc course;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| courseId      | varchar(25) | NO   | PRI | NULL    |       |
+| courseName    | varchar(30) | YES  |     | NULL    |       |
+| courseDept    | varchar(30) | YES  |     | NULL    |       |
+| courseFaculty | varchar(30) | YES  |     | NULL    |       |
+| courseRoom    | int         | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+#3. PLAYING WITH CONSTRAINTS - NOTNULL, UNIQUE, CHECK
+
+mysql> ALTER TABLE student
+    -> MODIFY COLUMN regNo int NOT NULL;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student
+    -> ;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| regNo  | int          | NO   | PRI | NULL    |       |
+| name   | varchar(255) | YES  |     | NULL    |       |
+| phone  | varchar(15)  | YES  |     | NULL    |       |
+| age    | int          | YES  |     | NULL    |       |
+| dept   | varchar(25)  | YES  |     | NULL    |       |
+| gender | char(1)      | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE student
+    -> ADD UNIQUE(regNo);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| regNo  | int          | NO   | PRI | NULL    |       |
+| name   | varchar(255) | YES  |     | NULL    |       |
+| phone  | varchar(15)  | YES  |     | NULL    |       |
+| age    | int          | YES  |     | NULL    |       |
+| dept   | varchar(25)  | YES  |     | NULL    |       |
+| gender | char(1)      | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> # Check is used to add a constraint for values of a column.
+mysql> ALTER TABLE student
+    -> ADD CHECK(age >= 18) ;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| regNo  | int          | NO   | PRI | NULL    |       |
+| name   | varchar(255) | YES  |     | NULL    |       |
+| phone  | varchar(15)  | YES  |     | NULL    |       |
+| age    | int          | YES  |     | NULL    |       |
+| dept   | varchar(25)  | YES  |     | NULL    |       |
+| gender | char(1)      | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)

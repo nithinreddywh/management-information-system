@@ -1,0 +1,27 @@
+mysql> use msi
+Database changed
+mysql> CREATE USER sahoo;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> GRANT ALL ON student TO sahoo;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SHOW GRANTS FOR sahoo;
++--------------------------------------------------------+
+| Grants for sahoo@%                                     |
++--------------------------------------------------------+
+| GRANT USAGE ON *.* TO `sahoo`@`%`                      |
+| GRANT ALL PRIVILEGES ON `msi`.`student` TO `sahoo`@`%` |
++--------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> REVOKE ALL ON student FROM sahoo;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SHOW GRANTS FOR sahoo;
++-----------------------------------+
+| Grants for sahoo@%                |
++-----------------------------------+
+| GRANT USAGE ON *.* TO `sahoo`@`%` |
++-----------------------------------+
+1 row in set (0.00 sec)

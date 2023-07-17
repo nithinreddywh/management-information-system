@@ -1,0 +1,174 @@
+mysql> use msi
+Database changed
+mysql> select * from student;
++-----------+---------+------------+------+------+--------+
+| regNo     | name    | phone      | age  | dept | gender |
++-----------+---------+------------+------+------+--------+
+| 192011002 | sahoo   | 7984510623 |   21 | CSE  | M      |
+| 192011003 | ajai    | 9999877877 |   19 | CSE  | M      |
+| 192011008 | subiya  | 9693111281 |   21 | CSE  | F      |
+| 192011013 | aniruth | 9999888877 |   20 | CSE  | M      |
+| 192011054 | gareeb  | 9955877877 |   21 | IT   | F      |
++-----------+---------+------------+------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc student;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| regNo  | int          | NO   | PRI | NULL    |       |
+| name   | varchar(255) | YES  |     | NULL    |       |
+| phone  | varchar(15)  | YES  |     | NULL    |       |
+| age    | int          | YES  |     | NULL    |       |
+| dept   | varchar(25)  | YES  |     | NULL    |       |
+| gender | char(1)      | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> INSERT INTO student VALUES(192012001, 'subiyarani' , '8889990001' , 20,'ECE', 'F');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++-----------+------------+------------+------+------+--------+
+| regNo     | name       | phone      | age  | dept | gender |
++-----------+------------+------------+------+------+--------+
+| 192011002 | sahoo      | 7984510623 |   21 | CSE  | M      |
+| 192011003 | ajai       | 9999877877 |   19 | CSE  | M      |
+| 192011008 | subiya     | 9693111281 |   21 | CSE  | F      |
+| 192011013 | aniruth    | 9999888877 |   20 | CSE  | M      |
+| 192011054 | gareeb     | 9955877877 |   21 | IT   | F      |
+| 192012001 | subiyarani | 8889990001 |   20 | ECE  | F      |
++-----------+------------+------------+------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SET autocommit = 0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO student VALUES(192013001, 'subiyaraja' , '8877990001' , 19,'EEE', 'M');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++-----------+------------+------------+------+------+--------+
+| regNo     | name       | phone      | age  | dept | gender |
++-----------+------------+------------+------+------+--------+
+| 192011002 | sahoo      | 7984510623 |   21 | CSE  | M      |
+| 192011003 | ajai       | 9999877877 |   19 | CSE  | M      |
+| 192011008 | subiya     | 9693111281 |   21 | CSE  | F      |
+| 192011013 | aniruth    | 9999888877 |   20 | CSE  | M      |
+| 192011054 | gareeb     | 9955877877 |   21 | IT   | F      |
+| 192012001 | subiyarani | 8889990001 |   20 | ECE  | F      |
+| 192013001 | subiyaraja | 8877990001 |   19 | EEE  | M      |
++-----------+------------+------------+------+------+--------+
+7 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student;
++-----------+------------+------------+------+------+--------+
+| regNo     | name       | phone      | age  | dept | gender |
++-----------+------------+------------+------+------+--------+
+| 192011002 | sahoo      | 7984510623 |   21 | CSE  | M      |
+| 192011003 | ajai       | 9999877877 |   19 | CSE  | M      |
+| 192011008 | subiya     | 9693111281 |   21 | CSE  | F      |
+| 192011013 | aniruth    | 9999888877 |   20 | CSE  | M      |
+| 192011054 | gareeb     | 9955877877 |   21 | IT   | F      |
+| 192012001 | subiyarani | 8889990001 |   20 | ECE  | F      |
++-----------+------------+------------+------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student;
++-----------+------------+------------+------+------+--------+
+| regNo     | name       | phone      | age  | dept | gender |
++-----------+------------+------------+------+------+--------+
+| 192011002 | sahoo      | 7984510623 |   21 | CSE  | M      |
+| 192011003 | ajai       | 9999877877 |   19 | CSE  | M      |
+| 192011008 | subiya     | 9693111281 |   21 | CSE  | F      |
+| 192011013 | aniruth    | 9999888877 |   20 | CSE  | M      |
+| 192011054 | gareeb     | 9955877877 |   21 | IT   | F      |
+| 192012001 | subiyarani | 8889990001 |   20 | ECE  | F      |
++-----------+------------+------------+------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO student VALUES(192013001, 'subiyaraja' , '8877990001' , 19,'EEE', 'M');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from student;
++-----------+------------+------------+------+------+--------+
+| regNo     | name       | phone      | age  | dept | gender |
++-----------+------------+------------+------+------+--------+
+| 192011002 | sahoo      | 7984510623 |   21 | CSE  | M      |
+| 192011003 | ajai       | 9999877877 |   19 | CSE  | M      |
+| 192011008 | subiya     | 9693111281 |   21 | CSE  | F      |
+| 192011013 | aniruth    | 9999888877 |   20 | CSE  | M      |
+| 192011054 | gareeb     | 9955877877 |   21 | IT   | F      |
+| 192012001 | subiyarani | 8889990001 |   20 | ECE  | F      |
+| 192013001 | subiyaraja | 8877990001 |   19 | EEE  | M      |
++-----------+------------+------------+------+------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select * from dept;
++--------+----------+--------+
+| deptId | deptName | HOD    |
++--------+----------+--------+
+| 2001   | CSE      | XYZABC |
+| 2002   | IT       | ABCXYZ |
+| 2003   | ECE      | CDEWXY |
+| 2004   | EEE      | XYZLMN |
++--------+----------+--------+
+4 rows in set (0.00 sec)
+
+
+
+mysql> # 2. SAVEPOINTS
+
+
+mysql> SAVEPOINT savepoint1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO student VALUES(192013002, 'rajeev' , '8977990001' , 18,'EEE', 'M');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++-----------+------------+------------+------+------+--------+
+| regNo     | name       | phone      | age  | dept | gender |
++-----------+------------+------------+------+------+--------+
+| 192011002 | sahoo      | 7984510623 |   21 | CSE  | M      |
+| 192011003 | ajai       | 9999877877 |   19 | CSE  | M      |
+| 192011008 | subiya     | 9693111281 |   21 | CSE  | F      |
+| 192011013 | aniruth    | 9999888877 |   20 | CSE  | M      |
+| 192011054 | gareeb     | 9955877877 |   21 | IT   | F      |
+| 192012001 | subiyarani | 8889990001 |   20 | ECE  | F      |
+| 192013001 | subiyaraja | 8877990001 |   19 | EEE  | M      |
+| 192013002 | rajeev     | 8977990001 |   18 | EEE  | M      |
++-----------+------------+------------+------+------+--------+
+8 rows in set (0.00 sec)
+
+mysql> ROLLBACK TO savepoint1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student;
++-----------+------------+------------+------+------+--------+
+| regNo     | name       | phone      | age  | dept | gender |
++-----------+------------+------------+------+------+--------+
+| 192011002 | sahoo      | 7984510623 |   21 | CSE  | M      |
+| 192011003 | ajai       | 9999877877 |   19 | CSE  | M      |
+| 192011008 | subiya     | 9693111281 |   21 | CSE  | F      |
+| 192011013 | aniruth    | 9999888877 |   20 | CSE  | M      |
+| 192011054 | gareeb     | 9955877877 |   21 | IT   | F      |
+| 192012001 | subiyarani | 8889990001 |   20 | ECE  | F      |
+| 192013001 | subiyaraja | 8877990001 |   19 | EEE  | M      |
++-----------+------------+------------+------+------+--------+
+7 rows in set (0.00 sec)

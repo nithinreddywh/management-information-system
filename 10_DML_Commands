@@ -1,0 +1,205 @@
+#1. INSERTING INTO TABLES
+
+mysql> INSERT INTO student VALUES(192011002, 'sahoo', '7984510623', 21, 'CSE', 'M');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO student VALUES(192011008, 'subiya', '9693111281', 21, 'CSE', 'F');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO student VALUES(192011013, 'aniruth', '9999888877', 20, 'CSE', 'M');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO student VALUES(192011003, 'ajai', '9999877877', 19, 'CSE', 'M');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO student VALUES(192011054, 'gareeb', '9955877877', 21, 'IT', 'F');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++-----------+---------+------------+------+------+--------+
+| regNo     | name    | phone      | age  | dept | gender |
++-----------+---------+------------+------+------+--------+
+| 192011002 | sahoo   | 7984510623 |   21 | CSE  | M      |
+| 192011003 | ajai    | 9999877877 |   19 | CSE  | M      |
+| 192011008 | subiya  | 9693111281 |   21 | CSE  | F      |
+| 192011013 | aniruth | 9999888877 |   20 | CSE  | M      |
+| 192011054 | gareeb  | 9955877877 |   21 | IT   | F      |
++-----------+---------+------------+------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> INSERT INTO dept VALUES('2001', 'CSE', 'XYZABC');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO dept VALUES('2002', 'IT', 'ABCXYZ');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO dept VALUES('2003', 'ECE', 'CDEWXY');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO dept VALUES('2004', 'EEE', 'XYZLMN');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO dept VALUES('2005', 'MECH', 'LMNOPQ');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+----------+--------+
+| deptId | deptName | HOD    |
++--------+----------+--------+
+| 2001   | CSE      | XYZABC |
+| 2002   | IT       | ABCXYZ |
+| 2003   | ECE      | CDEWXY |
+| 2004   | EEE      | XYZLMN |
+| 2005   | MECH     | LMNOPQ |
++--------+----------+--------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql> INSERT INTO faculty VALUES('19cse1001', 'deepika', 'CSE' , '88889999', '2000-11-11', 'F');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO faculty VALUES('19cse1002', 'deepak', 'IT' , '88779999', '1998-11-11', 'M');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO faculty VALUES('19cse1002', 'dee', 'CSE' , '88779399', '1997-12-11', 'M');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO faculty VALUES('19cse1002', 'sumisha', 'EEE' , '82279399', '1996-03-11', 'F');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO faculty VALUES('19cse1002', 'sumish', 'ECE' , '82279299', '1997-04-12', 'M');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from faculty
+    -> ;
++-----------+-------------+-------------+--------------+------------+--------+
+| facultyId | facultyName | facultyDept | facultyPhone | facultyDOB | gender |
++-----------+-------------+-------------+--------------+------------+--------+
+| 19cse1001 | deepika     | CSE         | 88889999     | 2000-11-11 | F      |
+| 19cse1002 | deepak      | IT          | 88779999     | 1998-11-11 | M      |
+| 19cse1002 | dee         | CSE         | 88779399     | 1997-12-11 | M      |
+| 19cse1002 | sumisha     | EEE         | 82279399     | 1996-03-11 | F      |
+| 19cse1002 | sumish      | ECE         | 82279299     | 1997-04-12 | M      |
++-----------+-------------+-------------+--------------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO course VALUES('2001' , 'DS', 'CSE', 'deepika', 203);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO course VALUES('2002' , 'DAA', 'CSE', 'deepak', 212);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO course VALUES('1002' , 'EG', 'EEE', 'sumisha', 313);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO course VALUES('1003' , 'PDSD', 'EEE', 'sumisha', 312);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO course VALUES('2003' , 'BIO', 'CSE', 'deepika', 404);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM course;
++----------+------------+------------+---------------+------------+
+| courseId | courseName | courseDept | courseFaculty | courseRoom |
++----------+------------+------------+---------------+------------+
+| 1002     | EG         | EEE        | sumisha       |        313 |
+| 1003     | PDSD       | EEE        | sumisha       |        312 |
+| 2001     | DS         | CSE        | deepika       |        203 |
+| 2002     | DAA        | CSE        | deepak        |        212 |
+| 2003     | BIO        | CSE        | deepika       |        404 |
++----------+------------+------------+---------------+------------+
+5 rows in set (0.00 sec)
+
+
+ 
+#2. UPDATING TABLES
+mysql> UPDATE course SET courseDept = 'IT' WHERE courseFaculty = 'deepak';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM course;
++----------+------------+------------+---------------+------------+
+| courseId | courseName | courseDept | courseFaculty | courseRoom |
++----------+------------+------------+---------------+------------+
+| 1002     | EG         | EEE        | sumisha       |        313 |
+| 1003     | PDSD       | EEE        | sumisha       |        312 |
+| 2001     | DS         | CSE        | deepika       |        203 |
+| 2002     | DAA        | IT         | deepak        |        212 |
+| 2003     | BIO        | CSE        | deepika       |        404 |
++----------+------------+------------+---------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE course SET courseDept = 'ECE' , courseFaculty = 'sumish' WHERE courseId = '1003';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM course;
++----------+------------+------------+---------------+------------+
+| courseId | courseName | courseDept | courseFaculty | courseRoom |
++----------+------------+------------+---------------+------------+
+| 1002     | EG         | EEE        | sumisha       |        313 |
+| 1003     | PDSD       | ECE        | sumish        |        312 |
+| 2001     | DS         | CSE        | deepika       |        203 |
+| 2002     | DAA        | IT         | deepak        |        212 |
+| 2003     | BIO        | CSE        | deepika       |        404 |
++----------+------------+------------+---------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from faculty;
++-----------+-------------+-------------+--------------+------------+--------+
+| facultyId | facultyName | facultyDept | facultyPhone | facultyDOB | gender |
++-----------+-------------+-------------+--------------+------------+--------+
+| 19cse1001 | deepika     | CSE         | 88889999     | 2000-11-11 | F      |
+| 19cse1002 | deepak      | IT          | 88779999     | 1998-11-11 | M      |
+| 19cse1002 | dee         | CSE         | 88779399     | 1997-12-11 | M      |
+| 19cse1002 | sumisha     | EEE         | 82279399     | 1996-03-11 | F      |
+| 19cse1002 | sumish      | ECE         | 82279299     | 1997-04-12 | M      |
++-----------+-------------+-------------+--------------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE faculty SET facultyId = '19it1001' WHERE facultyName = 'deepak';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE faculty SET facultyId = '19cse1003' WHERE facultyName = 'dee';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE faculty SET facultyId = '19eee1001' WHERE facultyName = 'sumisha';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE faculty SET facultyId = '19ece1001' WHERE facultyName = 'sumish';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from faculty;
++-----------+-------------+-------------+--------------+------------+--------+
+| facultyId | facultyName | facultyDept | facultyPhone | facultyDOB | gender |
++-----------+-------------+-------------+--------------+------------+--------+
+| 19cse1001 | deepika     | CSE         | 88889999     | 2000-11-11 | F      |
+| 19it1001  | deepak      | IT          | 88779999     | 1998-11-11 | M      |
+| 19cse1003 | dee         | CSE         | 88779399     | 1997-12-11 | M      |
+| 19eee1001 | sumisha     | EEE         | 82279399     | 1996-03-11 | F      |
+| 19ece1001 | sumish      | ECE         | 82279299     | 1997-04-12 | M      |
++-----------+-------------+-------------+--------------+------------+--------+
+5 rows in set (0.00 sec)
+
+
+
+#3. DELETING TUPLES
+
+mysql> DELETE FROM dept WHERE deptId = '2005';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from dept;
++--------+----------+--------+
+| deptId | deptName | HOD    |
++--------+----------+--------+
+| 2001   | CSE      | XYZABC |
+| 2002   | IT       | ABCXYZ |
+| 2003   | ECE      | CDEWXY |
+| 2004   | EEE      | XYZLMN |
++--------+----------+--------+
+4 rows in set (0.00 sec)
